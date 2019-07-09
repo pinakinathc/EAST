@@ -133,4 +133,5 @@ def loss(y_true_cls, y_pred_cls,
     tf.summary.scalar('geometry_theta', tf.reduce_mean(L_theta * y_true_cls * training_mask))
     L_g = L_AABB + 20 * L_theta
 
-    return tf.reduce_mean(L_g * y_true_cls * training_mask) + classification_loss
+    return tf.add(tf.divide(tf.reduce_sum(L_g * y_true_cls * training_mask), 
+        tf.reduce_sum(y_true_cls * training_mask)) + classification_loss)

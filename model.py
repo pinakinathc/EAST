@@ -134,4 +134,4 @@ def loss(y_true_cls, y_pred_cls,
     L_g = L_AABB + 20 * L_theta
 
     return tf.add(tf.divide(tf.reduce_sum(L_g * y_true_cls * training_mask), 
-        tf.reduce_sum(y_true_cls * training_mask)) + classification_loss)
+        tf.reduce_sum(y_true_cls * training_mask)), classification_loss)
